@@ -43,7 +43,7 @@ server.addService(newsProto.NewsService.service, {
     callback(null, newsItem);
   },
   addNews: (call, callback) => {
-    let _news = { id: Date.now(), ...call.request };
+    let _news = { ...call.request, id: (news.length + 1).toString() };
     news.push(_news);
     callback(null, _news);
   },

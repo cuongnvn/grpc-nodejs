@@ -10,8 +10,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get("/news", (req, res) => {
   client.getAllNews({}, (error, news) => {
-    if (error) throw error;
+    // if (error) throw error;
+    if (error) return res.status(404).send(error);
     res.send(news);
+  });
+});
+
+app.get("/news/:id", (req, res) => {
+  client.getNews({ id: req.params.id }, (error, news) => {
+    if (error) return res.status(404).send(error);
+    return res.send(news);
   });
 });
 
@@ -23,8 +31,8 @@ app.post("/news", (req, res) => {
       title: req.body.title,
     },
     (error, news) => {
-      if (error) throw error;
-      res.send({ data: news, msg: "Successfully created a news." });
+      if (error) return res.status(404).send(error);
+      return res.send({ data: news, msg: "Successfully created a news." });
     }
   );
 });
