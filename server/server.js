@@ -1,5 +1,5 @@
 const grpc = require("@grpc/grpc-js");
-const PROTO_PATH = "./news.proto";
+const PROTO_PATH = "../proto/news.proto";
 var protoLoader = require("@grpc/proto-loader");
 
 const options = {
